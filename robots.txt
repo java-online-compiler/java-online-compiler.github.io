@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://java-online-compiler.github.io/sitemap.xml

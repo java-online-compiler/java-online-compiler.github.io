@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <title>Java онлайн компилятор на русском - IDE и редактор кода</title>
+    
+    <meta name="description" content="Бесплатный онлайн компилятор Java с редактором кода с подсветкой. Пишите, компилируйте и запускайте Java программы прямо в браузере. Поддержка всех версий Джава, подсветка синтаксиса, автодополнение кода.">
+    <meta name="author" content="Java IDE Online на русском">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://java-online-compiler.github.io/">
+    
+    <meta property="og:title" content="Java онлайн компилятор на русском - IDE и редактор кода">
+    <meta property="og:description" content="Бесплатный онлайн компилятор Java с редактором кода с подсветкой. Пишите, компилируйте и запускайте Java программы прямо в браузере. Поддержка всех версий Джава, подсветка синтаксиса, автодополнение кода.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://java-online-compiler.github.io/">
+    <meta property="og:image" content="https://java-online-compiler.github.io/preview.jpg">
+    <meta property="og:image:width" content="1280">
+    <meta property="og:image:height" content="720">
+    <meta property="og:image:alt" content="Java онлайн компилятор">
+    <meta property="og:site_name" content="Java онлайн компилятор">
+    
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    <script src="compiler.js"></script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Java онлайн компилятор",
+        "alternateName": "Онлайн Компилятор Java",
+        "description": "Бесплатный онлайн компилятор Java с редактором кода с подсветкой. Пишите, компилируйте и запускайте Java программы прямо в браузере. Поддержка всех версий Джава, подсветка синтаксиса, автодополнение кода.",
+        "url": "https://java-online-compiler.github.io/",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript. Requires HTML5.",
+        "softwareVersion": "1.0",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "creator": {
+            "@type": "Organization",
+            "name": "Java IDE Online на русском"
+        },
+        "featureList": [
+            "Компиляция Java кода онлайн",
+            "Подсветка синтаксиса",
+            "Автодополнение кода",
+            "Темная и светлая темы",
+            "Сохранение проектов",
+            "Примеры кода",
+            "Поддержка ввода данных",
+            "Расширенные настройки"
+        ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Java онлайн компилятор",
+        "applicationCategory": "DeveloperApplication",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "1250"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.41.0/min/vs/loader.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="all">
+    <link rel="stylesheet" href="styles.css" media="all">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <i class="fab fa-java"></i>
+                <span><h1>Java онлайн компилятор</h1></span>
+            </div>
+            <div class="controls">
+                <button class="control-btn" id="newProject">
+                    <i class="fas fa-plus"></i>
+                    <span>Новый проект</span>
+                </button>
+                <button class="control-btn" id="openBtn">
+                    <i class="fas fa-folder-open"></i>
+                    <span>Открыть</span>
+                </button>
+                <button class="control-btn" id="downloadBtn">
+                    <i class="fas fa-download"></i>
+                    <span>Скачать</span>
+                </button>
+                <div class="examples-dropdown">
+                    <button class="control-btn" id="examplesBtn">
+                        <i class="fas fa-code"></i>
+                        <span>Примеры</span>
+                    </button>
+                    <div id="examplesDropdown" class="examples-content">
+                        <a data-example="hello-world">Hello World</a>
+                        <a data-example="fibonacci">Числа Фибоначчи</a>
+                        <a data-example="sorting">Алгоритмы сортировки</a>
+                        <a data-example="calculator">Калькулятор</a>
+                        <a data-example="stringUtils">Работа со строками</a>
+                    </div>
+                </div>
+                <button class="settings-btn" id="settingsBtn">
+                    <i class="fas fa-cog"></i>
+                </button>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+				<button class="settings-btn" id="helpBtn">
+                    <i class="fas fa-question"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="toolbar">
+            <button class="run-btn" id="runBtn">
+                <i class="fas fa-play"></i>
+                <span>Запустить</span>
+            </button>
+            <button class="save-btn" id="saveBtn">
+                <i class="fas fa-save"></i>
+                <span>Сохранить</span>
+            </button>
+            <button class="clear-btn" id="clearBtn">
+                <i class="fas fa-trash"></i>
+                <span>Очистить консоль</span>
+            </button>
+        </div>
+
+        <div class="tab-container" id="tabContainer">
+            <div class="tab active" data-file="Main.java">
+                <div class="tab-title">Main.java</div>
+                <div class="tab-close">&times;</div>
+            </div>
+            <div class="add-tab" id="addTab">
+                <i class="fas fa-plus"></i>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="editor-container">
+                <div class="editor" id="editor"></div>
+            </div>
+            <div class="output-container">
+                <div class="output-header">
+                    <div class="output-title">Консоль</div>
+                    <div class="output-actions">
+                        <button id="clearOutputBtn">
+                            <i class="fas fa-trash"></i> Очистить
+                        </button>
+                    </div>
+                </div>
+                <div class="output" id="output"></div>
+                <div class="input-bar">
+                    <textarea class="input-console" id="inputConsole" rows="4" placeholder="Введите данные для программы..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div id="statusMessage">Готов</div>
+            <div id="cursorPos">Строка: 1, Столбец: 1</div>
+        </div>
+    </div>
+
+    <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <div>Компиляция и выполнение кода...</div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Настройки редактора</h2>
+                <span class="close-modal" id="closeSettingsModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label for="fontSizeSelect">Размер шрифта:</label>
+                    <select id="fontSizeSelect">
+                        <option value="12">12px</option>
+                        <option value="14" selected>14px</option>
+                        <option value="16">16px</option>
+                        <option value="18">18px</option>
+                        <option value="20">20px</option>
+                    </select>
+                </div>
+                <div style="margin-top: 15px;">
+                    <label for="tabSizeSelect">Размер отступа:</label>
+                    <select id="tabSizeSelect">
+                        <option value="2">2 пробела</option>
+                        <option value="4" selected>4 пробела</option>
+                        <option value="8">8 пробелов</option>
+                    </select>
+                </div>
+                <div style="margin-top: 15px;">
+                    <label for="wordWrapSelect">Перенос строк:</label>
+                    <select id="wordWrapSelect">
+                        <option value="off">Выключен</option>
+                        <option value="on" selected>Включен</option>
+                    </select>
+                </div>
+                <div style="margin-top: 15px;">
+                    <label for="themeSelect">Тема редактора:</label>
+                    <select id="themeSelect">
+                        <option value="vs">Светлая</option>
+                        <option value="vs-dark">Темная</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-cancel" id="cancelSettingsBtn">Отмена</button>
+                <button class="modal-btn modal-btn-primary" id="saveSettingsBtn">Сохранить</button>
+            </div>
+        </div>
+    </div>
+	<div id="helpModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Как пользоваться компилятором</h2>
+                
+            </div>
+            <div class="modal-body">
+                <div>
+                    
+                    <p><strong>Написание кода:</strong> введите джава код в редакторе слева.</p>
+                    <p><strong>Запуск:</strong> нажмите кнопку "Запустить" для компиляции и выполнения.</p>
+                    <p><strong>Ввод данных:</strong> используйте поле внизу консоли для ввода данных в программу.</p>
+                    <p><strong>Файлы:</strong> создавайте новые файлы через кнопку "+" или загружайте существующие.</p>
+                    <p><strong>Примеры:</strong> выберите готовые примеры кода из выпадающего меню "Примеры".</p>
+                    <p><strong>Настройки:</strong> измените размер шрифта, тему и другие параметры в настройках.</p>
+                    <p><strong>Сохранение:</strong> сохраняйте проекты локально или скачивайте файлы.</p>
+                </div>
+                <div style="margin-top: 15px;">
+                    <div><a href="/contact/">Контакты</a></div>
+                    <div><a href="/policy/">Политика конфиденциальности</a></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-primary" id="closeHelpModal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+    <!-- New File Modal -->
+    <div id="newFileModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Новый Java файл</h2>
+                <span class="close-modal" id="closeNewFileModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <label for="fileNameInput">Имя файла:</label>
+                    <input type="text" id="fileNameInput" value="NewClass.java">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-cancel" id="cancelNewFileBtn">Отмена</button>
+                <button class="modal-btn modal-btn-primary" id="createNewFileBtn">Создать</button>
+            </div>
+			
+        </div>
+    </div>
+    <input type="file" id="fileInput" class="file-input" accept=".java">
+</body>
+</html>
