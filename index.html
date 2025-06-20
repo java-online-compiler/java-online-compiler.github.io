@@ -175,15 +175,19 @@ window.yaContextCb.push(() => {
             </div>
 		    <div class="ya-block">
 		        <!-- Yandex.RTB R-A-15940434-2 -->
-		        <div id="yandex_rtb_R-A-15940434-2"></div>
-		        <script>
-		        window.yaContextCb.push(() => {
-		            Ya.Context.AdvManager.render({
-		                "blockId": "R-A-15940434-2",
-		                "renderTo": "yandex_rtb_R-A-15940434-2"
-		            })
-		        })
-		        </script>
+		        <div id="yandex_rtb_R-A-15940434-2" style="display:none;"></div>
+			<script>
+			    if (window.innerWidth > 992) {
+			        document.getElementById("yandex_rtb_R-A-15940434-2").style.display = "block";
+			
+			        window.yaContextCb.push(() => {
+			            Ya.Context.AdvManager.render({
+			                "blockId": "R-A-15940434-2",
+			                "renderTo": "yandex_rtb_R-A-15940434-2"
+			            });
+			        });
+			    }
+			</script>
 		    </div>
             <div class="output-container">
                 <div class="output-header">
