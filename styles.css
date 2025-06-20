@@ -53,11 +53,11 @@ body.dark-theme .output {
     font-size: 1rem;
     font-weight: 700;
 }
-..logo a {
+.logo a {
     color: white;
     text-decoration: none;
 }
-output-title,
+.output-title,
 .tab.active {
     font-weight: 500;
 }
@@ -489,13 +489,14 @@ body.dark-theme .examples-content a {
     display: none;
 }
 @media (max-width: 992px) {
+
     .main {
         flex-direction: column;
     }
     .editor-container,
     .output-container {
         flex: none;
-        height: 50%;
+        height: calc((100vh - 60px - 90px - 25px - 30vh) / 2); /* вычисляем высоту с учетом рекламы */
         width: 100%;
     }
     .editor-container {
@@ -503,6 +504,21 @@ body.dark-theme .examples-content a {
         border-bottom: 1px solid #ddd;
     }
     body.dark-theme .editor-container {
+        border-bottom: 1px solid #444;
+    }
+    .ya-block {
+        flex: none;
+        width: 100%;
+        height: 30vh;
+        max-height: 200px;
+        min-height: 100px;
+        border-left: none;
+        border-right: none;
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+    }
+    body.dark-theme .ya-block {
+        border-top: 1px solid #444;
         border-bottom: 1px solid #444;
     }
     .clear-btn span,
@@ -527,24 +543,8 @@ body.dark-theme .examples-content a {
         padding: 0;
         justify-content: center;
     }
-    .ya-block {
-        flex: none;
-        width: 100%;
-        height: 30vh;
-        max-height: 200px;
-        min-height: 100px;
-        border-left: none;
-        border-right: none;
-        border-top: 1px solid #ddd;
-        border-bottom: 1px solid #ddd;
-    }
-    
-    body.dark-theme .ya-block {
-        border-top: 1px solid #444;
-        border-bottom: 1px solid #444;
-    }
 }
-}
+
 @media (max-width: 576px) {
     .header {
         flex-direction: column;
@@ -573,4 +573,9 @@ body.dark-theme .examples-content a {
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
     flex-shrink: 0;
+}
+body.dark-theme .ya-block {
+    background-color: #2d2d2d;
+    border-left: 1px solid #444;
+    border-right: 1px solid #444;
 }
